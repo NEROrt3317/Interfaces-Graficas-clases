@@ -1,0 +1,85 @@
+# hello.py
+#
+# Aplicación Kivy Mínima
+#
+# Para poder ejecutar, primero debe haber instalado Kivy en el proyecto
+# usando el comando
+#
+#     pip install "kivy[base]"  
+#
+
+# Para poder utilizar Kivy en su aplicación, lo primero es importar
+# la clasee App del módulo kivy.app
+from kivy.app import App
+
+# Cada componente que vaya a utilizar, debe ser importado 
+from kivy.uix.label import Label
+from kivy.core.window import Window
+from kivy.uix.boxlayout import BoxLayout
+# Cada aplicación Kivy es una clase descendiente de la clase kivy.app.App
+class HelloApp(App):
+    
+    # El método Build es el encargado de crear los controles visuales
+    # que comprenden la ventana principal de la aplicación
+    def build(self):
+        # build() debe retornar el componente que contiene a todos los
+        # demás controles de la ventana
+        """
+        primero hicimos esto es funcional péro no esta horizontal por lo cual agregamos mas funciones 
+        Window.clearcolor = "white"
+        etiqueta = Label(text="X", font_size=70, color = "green",  underline = 5000 )
+        contenedor.add_widget(etiqueta)
+        
+        etiqueta2 = Label(text="X", font_size=70, color = "green",  underline = 5000 )
+        contenedor.add_widget(etiqueta2)
+        
+        etiqueta3 = Label(text="X", font_size=70, color = "green",  underline = 5000 )
+        contenedor.add_widget(etiqueta3)
+        
+        etiqueta4 = Label(text="X", font_size=70, color = "green",  underline = 5000 )
+        contenedor.add_widget(etiqueta4)
+        
+        #BackgroundColor = 2
+        return contenedor
+        """
+        # ahora lo hacemos con el codigo que se puede modificar vertical u horizontal 
+        """
+        Window.clearcolor = "white"
+        contenedor = BoxLayout(orientation = "vertical")
+
+        fila1 = BoxLayout(orientation="horizontal")
+
+        contenedor.add_widget(fila1)
+
+        fila1.add_widget( Label(text="X", font_size=70, color = "purple",  underline = 5000 ))
+        fila1.add_widget( Label(text="0", font_size=70, color = "black",  underline = 5000 ))
+        fila1.add_widget( Label(text="0", font_size=70, color = "black",  underline = 5000 )) 
+
+        fila2 = BoxLayout( orientation= "horizontal")
+        contenedor.add_widget(fila2)
+        fila2.add_widget( Label(text="0", font_size=70, color = "black",  underline = 5000 ))
+        fila2.add_widget( Label(text="x", font_size=70, color = "purple",  underline = 5000 ))
+        fila2.add_widget( Label(text="0", font_size=70, color = "black",  underline = 5000 )) 
+
+        fila3 = BoxLayout( orientation= "horizontal")
+        contenedor.add_widget(fila3)
+        fila3.add_widget( Label(text="0", font_size=70, color = "black",  underline = 5000 ))
+        fila3.add_widget( Label(text="0", font_size=70, color = "black",  underline = 5000 ))
+        fila3.add_widget( Label(text="x", font_size=70, color = "purple",  underline = 5000 )) 
+        return contenedor
+        """
+        # aplicamos codigo limpio con la regla de no repeat yourself ( no repitas lo mismo)
+        Window.clearcolor = "white"
+        contenedor=BoxLayout()
+        for _ in range(3):
+            etiqueta = Label(text="0", font_size=70, color = "black",  underline = 5000 )
+            contenedor.add_widget(etiqueta)
+        return contenedor
+
+        
+
+    
+# Para ejecutar la aplicación, se debe llamar al método run() de
+# la clase principal descendiente de kivy.app.App
+if __name__ == "__main__":
+    HelloApp().run()
